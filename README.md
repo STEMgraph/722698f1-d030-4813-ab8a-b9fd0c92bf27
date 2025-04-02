@@ -1,51 +1,101 @@
 <!---
 {
-  "depends_on": [],
+  "depends_on": ["https://github.com/STEMgraph/650920e2-edbe-4dc5-8a0c-96e7d76344e3"],
   "author": "Stephan Bökelmann",
-  "first_used": "2025-03-17",
-  "keywords": ["learning", "exercises", "education", "practice"]
+  "first_used": "2025-04-12",
+  "keywords": ["git", "remote", "github", "push", "clone"]
 }
 --->
 
-# Learning Through Exercises
+# Git: Using GitHub as a Remote
 
 ## 1) Introduction
-Learning by doing is one of the most effective methods to acquire new knowledge and skills. Rather than passively consuming information, actively engaging in problem-solving fosters deeper understanding and long-term retention. By working through structured exercises, students can grasp complex concepts in a more intuitive and applicable way. This approach is particularly beneficial in technical fields like programming, mathematics, and engineering.
 
-### 1.1) Further Readings and Other Sources
-- [The Importance of Practice in Learning](https://www.sciencedirect.com/science/article/pii/S036013151300062X)
-- "The Art of Learning" by Josh Waitzkin
-- [How to Learn Effectively: 5 Key Strategies](https://www.edutopia.org/article/5-research-backed-learning-strategies)
+You've worked with local Git repositories, practiced with branches, merges, and stashing, and you've even hosted your own remote repository using SSH.
+
+Now it’s time to take the next step: **using GitHub as your remote**.
+
+GitHub is a hosted Git platform that provides you with public or private remote repositories, user management, issue tracking, and many more features. In this exercise, you’ll:
+
+- Create a GitHub account and a repository on the web
+- Clone it to your local machine
+- Work on it just like any Git project
+- Push your changes back to GitHub
+- Clone your project on another machine or directory
+
+Understanding this process will help you integrate into collaborative workflows and prepare you for contributing to open source or managing your own projects online.
 
 ## 2) Tasks
-1. **Write a Summary**: Summarize the concept of "learning by doing" in 3-5 sentences.
-2. **Example Identification**: List three examples from your own experience where learning through exercises helped you understand a topic better.
-3. **Create an Exercise**: Design a simple exercise for a topic of your choice that someone else could use to practice.
-4. **Follow an Exercise**: Find an online tutorial that includes exercises and complete at least two of them.
-5. **Modify an Existing Exercise**: Take a basic problem from a textbook or online course and modify it to make it slightly more challenging.
-6. **Pair Learning**: Explain a concept to a partner and guide them through an exercise without giving direct answers.
-7. **Review Mistakes**: Look at an exercise you've previously completed incorrectly. Identify why the mistake happened and how to prevent it in the future.
-8. **Time Challenge**: Set a timer for 10 minutes and try to solve as many simple exercises as possible on a given topic.
-9. **Self-Assessment**: Create a checklist to evaluate your own performance in completing exercises effectively.
-10. **Reflect on Progress**: Write a short paragraph on how this structured approach to exercises has influenced your learning.
 
-<details>
-  <summary>Tip for Task 5</summary>
-  Try making small adjustments first, such as increasing the difficulty slightly or adding an extra constraint.
-</details>
+1. **Create a GitHub Account**
+
+   - Go to [https://github.com](https://github.com) and register an account.
+   - Confirm your email address.
+   - Optional: Configure a personal avatar, bio, and SSH keys in your profile.
+
+2. **Create a New Repository on GitHub**
+
+   - Click on the **"+"** icon in the top-right corner and choose **"New repository"**.
+   - Set a name (e.g., `github-test`).
+   - Do **not** initialize it with a README or license.
+   - Choose **public** or **private** depending on your preference.
+   - Click **Create repository**.
+
+   ⚠️ This is the GitHub equivalent of running `git init --bare` on your remote machine — you're creating a place for your code to live, without any working directory!
+
+3. **Clone the Repository to Your Local Machine**
+
+   On your **local machine**, open a terminal and run:
+   ```bash
+   git clone git@github.com:<your-username>/github-test.git
+   cd github-test
+   ```
+
+   This creates a full local Git repository with `origin` set to your GitHub repo via SSH.
+
+4. **Add a File and Commit**
+
+   Create a file called `hello.md` and add some content:
+   ```bash
+   echo "# Hello GitHub" > hello.md
+   git add hello.md
+   git commit -m "Add hello.md"
+   ```
+
+5. **Push to GitHub**
+
+   Push your changes to the `main` (or `master`) branch:
+   ```bash
+   git push origin main
+   ```
+
+   Now go to your repository on GitHub in the browser and verify that `hello.md` is visible.
+
+6. **Clone the Repository Elsewhere**
+
+   On a second machine, or in a new directory:
+   ```bash
+   git clone git@github.com:<your-username>/github-test.git github-test-copy
+   cd github-test-copy
+   ```
+
+   Check that `hello.md` is already present:
+   ```bash
+   cat hello.md
+   ```
 
 ## 3) Questions
-1. What are the main benefits of learning through exercises compared to passive learning?
-2. How do exercises improve long-term retention?
-3. Can you think of a subject where learning through exercises might be less effective? Why?
-4. What role does feedback play in learning through exercises?
-5. How can self-designed exercises improve understanding?
-6. Why is it beneficial to review past mistakes in exercises?
-7. How does explaining a concept to someone else reinforce your own understanding?
-8. What strategies can you use to stay motivated when practicing with exercises?
-9. How can timed challenges contribute to learning efficiency?
-10. How do exercises help bridge the gap between theory and practical application?
+
+- What is the difference between `git@github.com:...` and `https://github.com/...` when cloning?
+- Why does GitHub not give you a working directory on their servers?
+- What are the benefits of hosting a repository on GitHub compared to using your own remote machine?
+- What happens if you try to push without committing?
+- What do you see if you go to the *"Commits"* tab of your GitHub repo?
 
 ## 4) Advice
-Practice consistently and seek out diverse exercises that challenge different aspects of a topic. Combine exercises with reflection and feedback to maximize your learning efficiency. Don't hesitate to adapt exercises to fit your own needs and ensure that you're actively engaging with the material, rather than just going through the motions.
 
+GitHub is a great entry point into the world of remote collaboration. But remember: Git is the same underneath. You’ve already done this with your own server — GitHub just adds convenience, issue tracking, and collaboration tools.
+
+Using GitHub via SSH is secure and fast. If SSH access doesn’t work for you, you can also clone and push via HTTPS — GitHub supports both.
+
+Later on, you might want to explore Pull Requests, Branch Protection Rules, Actions (CI/CD), and GitHub Pages — all built on the same Git foundation.
